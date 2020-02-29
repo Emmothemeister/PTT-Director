@@ -7,7 +7,7 @@ public class Course {
 	private String courseName;
 	private CourseD director;
 	private String introduction;
-	private ArrayList<Class> classes;
+	private ArrayList<Classes> classes;
 	private ArrayList<Teacher> teachers;
 	private ArrayList<Request> requests;
 	
@@ -16,7 +16,7 @@ public class Course {
 		courseName = n;
 		director = d;
 		introduction = intro;
-		classes = new ArrayList<Class>();
+		classes = new ArrayList<Classes>();
 		teachers = new ArrayList<Teacher>();
 		requests = new ArrayList<Request>();
 	}

@@ -2,19 +2,30 @@ package Model;
 
 public class Request {
 	private int requestID;
-	private int newID = 0;
 	private String content;
-	private boolean status;
+	private boolean approved;
 	private double cost;
 	private Time submitTime;
 	private String comment;
 
-	public Request(String cont, double n, String comm) {
-		newID++;
-		requestID = newID;
+	public Request(String cont, double c, String comm) {
+		requestID = requestID++;
 		content = cont;
 		comment = comm;
+		cost = c;
 		submitTime = new Time();
-		status = false;
+		approved = false;
+	}
+	
+	public String getContt() {
+		return content;
+	}
+	
+	public double getCost() {
+		return cost;
+	}
+	
+	public String getComm() {
+		return comment;
 	}
 }
