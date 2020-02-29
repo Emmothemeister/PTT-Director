@@ -1,21 +1,28 @@
 package Model;
+import java.util.Calendar;
+
 
 public class Time {
 	private int year;
 	private int month;
-	private int date;
+	private int day;
 	private int hour;
 	private int minute;
 	private int second;
 	
-	public Time(int y, int m, int d, int h, int min, int s) {
-		year = y;
-		month = m;
-		date = d;
-		hour = h;
-		min = m;
-		second = s;
+	public Time() {
+		Calendar calendar = Calendar.getInstance();
+		year = calendar.get(Calendar.YEAR);
+		month = calendar.get(Calendar.MONTH);
+		day = calendar.get(Calendar.DAY_OF_MONTH);
+		hour = calendar.get(Calendar.HOUR_OF_DAY);
+		minute = calendar.get(Calendar.MINUTE);
+		second = calendar.get(Calendar.SECOND);
 		
+	}
+	
+	public String toString() {
+		return day + "/" + month + "/" + "/" + year + " " + hour + ":" + minute + ":" + second;
 	}
 	
 }
