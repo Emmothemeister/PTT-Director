@@ -8,13 +8,13 @@ public class ClaimForm {
 	private double cost;
 	private Time submitTime;
 	
-	public ClaimForm(String cont, double c, Time t) {
+	public ClaimForm(String cont, double c) {
 		newID++;
 		claimID = newID;
 		status = false;
 		content = cont;
 		cost = c;
-		submitTime = t;
+		submitTime = new Time();
 		
 	}
 }

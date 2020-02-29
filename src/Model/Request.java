@@ -9,12 +9,12 @@ public class Request {
 	private Time submitTime;
 	private String comment;
 
-	public Request(String cont, double n, String comm, Time t) {
+	public Request(String cont, double n, String comm) {
 		newID++;
 		requestID = newID;
 		content = cont;
 		comment = comm;
-		submitTime = t;
+		submitTime = new Time();
 		status = false;
 	}
 }
