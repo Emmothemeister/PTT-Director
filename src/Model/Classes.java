@@ -2,13 +2,13 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Class {
+public class Classes {
 	private int classID;
 	private int newID = 0;
 	private ArrayList<Teacher> teachers;
 	private ArrayList<Course> courses;
 	
-	public Class() {
+	public Classes() {
 		//automatic increment ID for classes
 		newID++;
 		classID = newID;
