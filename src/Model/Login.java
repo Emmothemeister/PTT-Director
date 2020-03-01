@@ -15,6 +15,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+
+import view.TUI;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPasswordField;

@@ -1,4 +1,4 @@
-package Model;
+package view;
 //This class is the UI design for teachers
 
 import java.awt.BorderLayout;
@@ -26,6 +26,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.Border;
+
+import Model.ClaimForm;
 
 
 public class TUI extends JFrame implements ActionListener{

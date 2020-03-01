@@ -25,4 +25,8 @@ public class Staff {
 	public int getSID() {
 		return newID;
 	}
+	
+	public String getSName() {
+		return SName;
+	}
 }
