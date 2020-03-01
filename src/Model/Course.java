@@ -11,13 +11,17 @@ public class Course {
 	private ArrayList<Teacher> teachers;
 	private ArrayList<Request> requests;
 	
-	public Course(String n, CourseD d, String intro) {
+	public Course(String n, String intro) {
 		courseID = courseID++;
 		courseName = n;
-		director = d;
+		director = null;
 		introduction = intro;
 		classes = new ArrayList<Classes>();
 		teachers = new ArrayList<Teacher>();
 		requests = new ArrayList<Request>();
+	}
+	
+	public void setDirector(CourseD d) {
+		director = d;
 	}
 }

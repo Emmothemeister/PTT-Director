@@ -22,4 +22,14 @@ public class CourseD extends Staff{
 		supervisedTeachers = new ArrayList<Teacher>();
 	}
 	
+	public ArrayList<Request> getApplyings(){
+		return applyings;
+	}
+	public ArrayList<Request> getRejecteds(){
+		return applyings;
+	}
+	public ArrayList<Request> getApproveds(){
+		return applyings;
+	}
+	
 }
