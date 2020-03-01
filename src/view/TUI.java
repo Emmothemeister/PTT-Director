@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
@@ -65,25 +66,42 @@ public class TUI extends JFrame implements ActionListener{
 		
 		
 		JLabel inbox1 = new JLabel("Please fill in a claim form for dd/mm/yyyy");
-		
+		inbox1.setFont(f);
+		JLabel inbox2 = new JLabel("Please fill in a claim form for dd/mm/yyyy");
+		inbox2.setFont(f);
 		JLabel sent1 = new JLabel("Sent Mail");
 		JLabel bin1 = new JLabel("This is the bin");
 		inbox.add(inbox1);
+		inbox.add(inbox2);
 		sent.add(sent1);
 		bin.add(bin1);
+
+		
+		//JTable for Historical
+		Object[] columnNames = {"Claim Date", "Claim Title", "Claim Amount"};
+		Object[][] rowData = {
+				{"01/01/2020", "Advanced Programming", 300},
+				{"05/01/2020", "Internet Technology", 200},
+				{"10/01/2020", "Advanced Programming", 300},
+				{"15/01/2020", "Internet Technology", 200},
+		};
+		JTable table = new JTable(rowData, columnNames);
+		JPanel panel = new JPanel(new BorderLayout());
+		
+//		JScrollPane scrollPane = new JScrollPane();
+		panel.add(table.getTableHeader(), BorderLayout.NORTH);
+		panel.add(table, BorderLayout.CENTER);
+//		scrollPane.add(table);
 		
 		
-		
-		tabbedPane.addTab("  Your Mail Box  ", mailBox);
-		tabbedPane.addTab(" New Claim Form  ", tab2);
-		tabbedPane.addTab("Historical Claims", tab3);
+
 		
 		timeLabel = new JLabel();
 //		leftCenter.add(timeLabel);
 		this.setTimer(timeLabel);
 		
 		
-		JPanel eastPanel = new JPanel(new BorderLayout());
+		JPanel eastPanel = new JPanel(new FlowLayout());
 		JPanel centerPanel = new JPanel(new BorderLayout());
 		
 		eastPanel.setBorder(blackline);
@@ -128,42 +146,98 @@ public class TUI extends JFrame implements ActionListener{
 		
 		TopInstruction.add(instruction);
 		
+		JLabel title = new JLabel("Please fill in the claim form here:");
+		JLabel claimDate = new JLabel("Claim Date     :");
+		JLabel claimTitle = new JLabel("Claim Title     :");
+		JLabel claimAmount = new JLabel("Claim Amount:");
 		
-//		JLabel id = new JLabel("Staff ID   :");
-//		JLabel pd = new JLabel("Password :");
-//		
-//		id.setFont(f);
-//		pd.setFont(f);
-//		JTextField ID = new JTextField(10);
-//		JPasswordField password = new JPasswordField(10);
-//		ID.setFont(f);
-//		password.setFont(f);
-//		
-//		JPanel boxes = new JPanel(new GridLayout(2,1));
-//		JPanel box1 = new JPanel();
-//		JPanel box2 = new JPanel();
-//		box1.add(id);
-//		box1.add(ID);
-//		box2.add(pd);
-//		box2.add(password);
-//		boxes.add(box1);
-//		boxes.add(box2);
+		title.setHorizontalAlignment(SwingConstants.CENTER);
 		
-//		JPanel buttonPanel = new JPanel(new GridLayout(3,1));
-//		JPanel buttons = new JPanel(new GridLayout(1,2));
-//		JPanel buttonBorder1 = new JPanel();
-//		JPanel buttonBorder2 = new JPanel();
-//		button1 = new JButton("Login");
-//		button2 = new JButton("Quit");
-//		button1.setFont(f);
-//		button2.setFont(f);
-//		button1.addActionListener(this);
-//		button2.addActionListener(this);
-//		buttons.add(button1);
-//		buttons.add(button2);
-//		buttonPanel.add(buttonBorder1);
-//		buttonPanel.add(buttons);
-//		buttonPanel.add(buttonBorder2);		
+		title.setFont(f);
+		claimDate.setFont(f);
+		claimTitle.setFont(f);
+		claimAmount.setFont(f);
+		
+		JTextField cd = new JTextField(10);
+		JTextField ct = new JTextField(10);
+		JTextField ca = new JTextField(10);
+		cd.setFont(f);
+		ct.setFont(f);
+		ca.setFont(f);
+		
+		JPanel TextFields = new JPanel(new GridLayout(5,1));
+		JPanel box1 = new JPanel();
+		JPanel box2 = new JPanel();
+		JPanel box3 = new JPanel();
+		JPanel submit = new JPanel();
+		box1.add(claimDate);
+		box1.add(cd);
+		box2.add(claimTitle);
+		box2.add(ct);
+		box3.add(claimAmount);
+		box3.add(ca);
+		
+		JButton s = new JButton("Submit");
+		JButton c = new JButton("Clear");
+		submit.add(c);
+		submit.add(s);
+		TextFields.add(title);
+		TextFields.add(box1);
+		TextFields.add(box2);
+		TextFields.add(box3);
+		TextFields.add(submit);
+		
+		//Ask for leave
+//		JPanel AFK = new JPanel();
+		JLabel leavingTitle = new JLabel("Please inform recruiter your leaving here:");
+		JLabel leavingDate = new JLabel("Leaving Date     :");
+		JLabel leavingCourseTitle = new JLabel("Leaving Coure Name:");
+		JLabel leavingReason = new JLabel("Leaving Reason   :");
+		
+		leavingTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		leavingTitle.setFont(f);
+		leavingDate.setFont(f);
+		leavingCourseTitle.setFont(f);
+		leavingReason.setFont(f);
+		
+		JTextField ld = new JTextField(10);
+		JTextField lc = new JTextField(10);
+		JTextField lr = new JTextField(10);
+		ld.setFont(f);
+		lc.setFont(f);
+		lr.setFont(f);
+		
+		JPanel awayForm = new JPanel(new GridLayout(6,1));
+		JPanel box4 = new JPanel();
+		JPanel box5 = new JPanel();
+		
+		JPanel buttons = new JPanel();
+		box4.add(leavingDate);
+		box4.add(ld);
+		box5.add(leavingCourseTitle);
+		box5.add(lc);
+		
+		
+		JButton ss = new JButton("Submit");
+		JButton cc = new JButton("Clear");
+		buttons.add(cc);
+		buttons.add(ss);
+		awayForm.add(leavingTitle);
+		awayForm.add(box4);
+		awayForm.add(box5);
+		awayForm.add(leavingReason);
+		awayForm.add(lr);
+		awayForm.add(buttons);
+		
+//		AFK.add(awayForm);
+		
+		
+		tabbedPane.addTab("  Your Mail Box  ", mailBox);
+		tabbedPane.addTab(" New Claim Form  ", TextFields);
+		tabbedPane.addTab("Historical Claims", panel);
+		tabbedPane.addTab("  Ask For Leave  ", awayForm);
+			
 		
 		topBoard.add(instruction);
 		topBoard.add(timeLabel);
@@ -185,7 +259,7 @@ public class TUI extends JFrame implements ActionListener{
 
 		
 		
-		this.add(eastPanel,BorderLayout.EAST);
+//		this.add(eastPanel,BorderLayout.EAST);
 		this.add(centerPanel,BorderLayout.CENTER);
 		
 		this.setVisible(true);

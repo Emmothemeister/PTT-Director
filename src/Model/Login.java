@@ -32,7 +32,7 @@ public class Login extends JFrame implements ActionListener{
 	private JButton button1, button2;
 	private Timer tmr;
 	private JLabel timeLabel;
-	private JRadioButton option1,option2,option3,option4,option5;
+	private JRadioButton option1,option2,option3,option4,option5,option6;
 
 	
 	private void setTimer(JLabel time) {
@@ -149,16 +149,19 @@ public class Login extends JFrame implements ActionListener{
 		option3 = new JRadioButton("PTT Director");
 		option4 = new JRadioButton("Recruiter");
 		option5 = new JRadioButton("Teacher",true);
+		option6 = new JRadioButton("Finance");
 		option1.setFont(f);
 		option2.setFont(f);
 		option3.setFont(f);
 		option4.setFont(f);
 		option5.setFont(f);
+		option6.setFont(f);
 		bg.add(option1);
 		bg.add(option2);
 		bg.add(option3);
 		bg.add(option4);
 		bg.add(option5);
+		bg.add(option6);
 		
 		JLabel staffType = new JLabel("Your role:");
 		staffType.setFont(f);
@@ -170,6 +173,7 @@ public class Login extends JFrame implements ActionListener{
 		rightCenter.add(option3);
 		rightCenter.add(option4);
 		rightCenter.add(option5);
+		rightCenter.add(option6);
 		
 		
 		this.add(eastPanel,BorderLayout.EAST);
@@ -193,6 +197,9 @@ public class Login extends JFrame implements ActionListener{
 				this.dispose();
 				new TUI();
 			}else if (option1.isSelected()) {
+				this.dispose();
+				new TUI();
+			}else if (option6.isSelected()) {
 				this.dispose();
 				new TUI();
 			}
