@@ -15,7 +15,7 @@ public class CourseDUI_Main extends JFrame{
 	private JPanel mainPanel, centralPanel, g1,g2,g3;
 	public JButton write;
 	public JButton enquiry, absence;
-	private CourseDCon_Main controller;
+	public CourseDCon_Main controller;
 	private CourseD model;
 	
 	public CourseDUI_Main(CourseD d, CourseDCon_Main control) {

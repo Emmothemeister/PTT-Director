@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import Model.CourseD;
 import Model.Request;
+import view.CourseDUI_Main;
 import view.CourseDUI_Write;
 
 import java.awt.event.*;
@@ -12,9 +13,11 @@ public class CourseDCon_Write implements ActionListener {
 	
 	private CourseD model;
 	private CourseDUI_Write view;
+	private CourseDCon_Main mainControl;
 	private int cost;
 	
-	public CourseDCon_Write(CourseD d) {
+	public CourseDCon_Write(CourseD d, CourseDCon_Main c) {
+		mainControl = c;
 		model = d;
 	}
 	
@@ -49,6 +52,13 @@ public class CourseDCon_Write implements ActionListener {
 			}
 			
 			
+	}	//if the back button is pressed, jump back to the main UI
+		else if(e.getSource() == view.back) {
+		JOptionPane.showMessageDialog(null, "Jumping");	
+		view.setVisible(false);
+		CourseDUI_Main mainView = new CourseDUI_Main(model, mainControl);
+		mainView.controller.setView(mainView);
+		mainView.setVisible(true);
 	}
 		}
 }

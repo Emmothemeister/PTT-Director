@@ -24,9 +24,11 @@ public class CourseDCon_Main implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == viewObject.write) {
 			JOptionPane.showMessageDialog(null, "Jumping");
-			CourseDUI_Write writeView = new CourseDUI_Write(model);
+			CourseDUI_Write writeView = new CourseDUI_Write(model, this);
 			viewObject.setVisible(false);
+			writeView.controller.setView(writeView);
 			writeView.setVisible(true);
+			
 		}
 	}
 	
