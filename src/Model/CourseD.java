@@ -31,5 +31,8 @@ public class CourseD extends Staff{
 	public ArrayList<Request> getApproveds(){
 		return applyings;
 	}
+	public ArrayList<Teacher> getSupervisedList(){
+		return supervisedTeachers;
+	}
 	
 }
