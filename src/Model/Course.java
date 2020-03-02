@@ -10,6 +10,7 @@ public class Course {
 	private ArrayList<Classes> classes;
 	private ArrayList<Teacher> teachers;
 	private ArrayList<Request> requests;
+	private ArrayList<Date> schedule;
 	private School school;
 	
 	public Course(String n, String intro, School sch) {
@@ -22,9 +23,18 @@ public class Course {
 		classes = new ArrayList<Classes>();
 		teachers = new ArrayList<Teacher>();
 		requests = new ArrayList<Request>();
+		schedule = new ArrayList<Date>();
 	}
 	
 	public void setDirector(CourseD d) {
 		director = d;
+	}
+	
+	public ArrayList<Date> getSchedule(){
+		return schedule;
+	}
+	
+	public String getCourseName() {
+		return courseName;
 	}
 }

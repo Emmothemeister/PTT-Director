@@ -25,7 +25,7 @@ public class CourseDUI_History extends JFrame{
 		controller = new CourseDCon_History(s, d, mainControl);
 		model = d;
 		this.setTitle("< PTT System > Request History");
-		this.setSize(30*UNIT,40*UNIT);
+		this.setSize(60*UNIT,25*UNIT);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(mainPanel = new JPanel());
 		mainPanel.setLayout(new BorderLayout());
@@ -55,6 +55,9 @@ public class CourseDUI_History extends JFrame{
 		list1 = new JList<String>(applyings);
 		list2 = new JList<String>(approveds);
 		list3 = new JList<String>(rejecteds);
+		list1.setBorder(BorderFactory.createTitledBorder("Applying Requests"));
+		list2.setBorder(BorderFactory.createTitledBorder("Approved Requests"));
+		list3.setBorder(BorderFactory.createTitledBorder("Rejected Requests"));
 		c1.add(list1);
 		c1.add(list2);
 		c1.add(list3);

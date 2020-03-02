@@ -2,7 +2,7 @@ package Model;
 import java.util.Calendar;
 
 
-public class Time {
+public class Time extends Date{
 	private int year;
 	private int month;
 	private int day;
@@ -11,10 +11,8 @@ public class Time {
 	private int second;
 	
 	public Time() {
+		super();
 		Calendar calendar = Calendar.getInstance();
-		year = calendar.get(Calendar.YEAR);
-		month = calendar.get(Calendar.MONTH);
-		day = calendar.get(Calendar.DAY_OF_MONTH);
 		hour = calendar.get(Calendar.HOUR_OF_DAY);
 		minute = calendar.get(Calendar.MINUTE);
 		second = calendar.get(Calendar.SECOND);

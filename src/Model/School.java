@@ -16,6 +16,7 @@ public class School {
 	private ArrayList<ClaimForm> claimFormList;
 	private ArrayList<Requirement> requirementList; 
 	private ArrayList<LogginHistory> logginHistory;
+	private ArrayList<Teacher> teacherList;
 	private int budget;
 	private int requestID_new;
 	private int staffID_new;
@@ -30,6 +31,7 @@ public class School {
 		classID_new = 0;
 		claimFormID_new = 0;
 		staffList = new ArrayList<Staff>();
+		teacherList = new ArrayList<Teacher>();
 		applyingRequests = new ArrayList<Request>();
 		approvedRequests = new ArrayList<Request>();
 		rejectedRequests = new ArrayList<Request>();
@@ -37,6 +39,20 @@ public class School {
 		requirementList = new ArrayList<Requirement>();
 		logginHistory = new ArrayList<LogginHistory>();
 		budget = 0;
+	}
+	
+	//this method will initial and create an ArrayList of Teachers
+	public void setTeacherList() {
+		teacherList.clear();
+		for(int i=0; i < staffList.size(); i++) {
+			if(staffList.get(i) instanceof Teacher) {
+				teacherList.add((Teacher) staffList.get(i));
+			}
+		}
+	}
+	
+	public ArrayList<Teacher> getTeacherList(){
+		return teacherList;
 	}
 	
 	public int getClaimFormNewID() {
