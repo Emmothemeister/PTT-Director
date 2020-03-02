@@ -9,6 +9,8 @@ import javax.swing.border.Border;
 
 import Control.CourseDCon_Main;
 import Model.CourseD;
+import Model.School;
+
 public class CourseDUI_Main extends JFrame{
 	private final int UNIT = 20;
 	private Font f = new Font("TimesRoman", Font.PLAIN, 20);
@@ -18,7 +20,7 @@ public class CourseDUI_Main extends JFrame{
 	public CourseDCon_Main controller;
 	private CourseD model;
 	
-	public CourseDUI_Main(CourseD d, CourseDCon_Main control) {
+	public CourseDUI_Main(School s, CourseD d, CourseDCon_Main control) {
 		controller = control;
 		model = d;
 		this.setTitle("< PTT System > Course Director");
@@ -39,7 +41,7 @@ public class CourseDUI_Main extends JFrame{
 		centralPanel.add(g2 = new JPanel());
 		enquiry = new JButton("Enquiry previous Teaching Request status");
 		centralPanel.add(enquiry);
-		//enquiry.addActionListener();
+		enquiry.addActionListener(controller);
 		centralPanel.add(g3 = new JPanel());
 		absence = new JButton("Mark a teacher as absence from some lectures");
 		centralPanel.add(absence);

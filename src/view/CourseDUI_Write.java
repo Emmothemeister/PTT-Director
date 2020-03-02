@@ -7,6 +7,7 @@ import javax.swing.border.Border;
 import Control.CourseDCon_Main;
 import Control.CourseDCon_Write;
 import Model.CourseD;
+import Model.School;
 
 public class CourseDUI_Write extends JFrame{
 	private final int UNIT = 20;
@@ -22,8 +23,8 @@ public class CourseDUI_Write extends JFrame{
 	public JButton back;
 	public JTextField content, cost;
 	
-	public CourseDUI_Write(CourseD d, CourseDCon_Main mainControl) {
-		controller = new CourseDCon_Write(d,mainControl);
+	public CourseDUI_Write(School s, CourseD d, CourseDCon_Main mainControl) {
+		controller = new CourseDCon_Write(s, d,mainControl);
 		this.setTitle("< PTT System > Wrtting Teaching Request");
 		this.setSize(40*UNIT,30*UNIT);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

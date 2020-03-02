@@ -1,9 +1,13 @@
 package Control;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 import Model.CourseD;
+import Model.PTTD;
 import Model.Request;
+import Model.School;
+import Model.Staff;
 import view.CourseDUI_Main;
 import view.CourseDUI_Write;
 
@@ -14,11 +18,13 @@ public class CourseDCon_Write implements ActionListener {
 	private CourseD model;
 	private CourseDUI_Write view;
 	private CourseDCon_Main mainControl;
+	private School school;
 	private int cost;
 	
-	public CourseDCon_Write(CourseD d, CourseDCon_Main c) {
+	public CourseDCon_Write(School s, CourseD d, CourseDCon_Main c) {
 		mainControl = c;
 		model = d;
+		school = s;
 	}
 	
 	public void setView(CourseDUI_Write GUI) {
@@ -42,9 +48,11 @@ public class CourseDCon_Write implements ActionListener {
 			
 			if(isNumeric(view.getCost())) {
 				cost = Integer.valueOf(view.getCost().toString());
-				model.getApplyings().add(new Request(view.getContent(), cost, "This is the comment."));
+				model.getApplyingArrayList().add(new Request(view.getContent(), cost, "This is the comment."));
+				school.getApplyingRequests().add(new Request(view.getContent(), cost, "This is the comment."));
 				view.clearCost();
 				view.clearContent();
+				
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Please enter an integer as the cost");
@@ -56,9 +64,21 @@ public class CourseDCon_Write implements ActionListener {
 		else if(e.getSource() == view.back) {
 		JOptionPane.showMessageDialog(null, "Jumping");	
 		view.setVisible(false);
-		CourseDUI_Main mainView = new CourseDUI_Main(model, mainControl);
+		CourseDUI_Main mainView = new CourseDUI_Main(school, model, mainControl);
 		mainView.controller.setView(mainView);
 		mainView.setVisible(true);
 	}
 		}
+	
+	//this method can be used to find the corresponding PTTD by his/her ID
+	public PTTD findPTTD(int SID) {
+		ArrayList<Staff> staffList = school.getStaffList();
+		for(int i = 0; i < school.getStaffList().size(); i++) {
+			if(staffList.get(i) instanceof PTTD && SID == staffList.get(i).getSID()) {
+				return (PTTD) staffList.get(i);
+			}
+		}
+		return null;
+		
+	}
 }

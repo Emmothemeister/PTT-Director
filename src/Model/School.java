@@ -2,6 +2,11 @@ package Model;
 
 import java.util.ArrayList;
 
+/*
+ * This class represents the database model of the school, and it
+ * stores the list of staffs, requests, requirements and loggin histories
+ */
+
 public class School {
 	
 	private ArrayList<Staff> staffList;
@@ -22,6 +27,32 @@ public class School {
 		requirementList = new ArrayList<Requirement>();
 		logginHistory = new ArrayList<LogginHistory>();
 		budget = 0;
+	}
+	
+	public ArrayList<Staff> getStaffList(){
+		return staffList;
+	}
+	
+	public ArrayList<Request> getApplyingRequests(){
+		return applyingRequests;
+	}
+	public ArrayList<Request> getApprovedRequests(){
+		return approvedRequests;
+	}
+	public ArrayList<Request> getRejectedRequests(){
+		return rejectedRequests;
+	}
+	
+	public ArrayList<ClaimForm> claimFormList(){
+		return claimFormList;
+	}
+	
+	public ArrayList<LogginHistory> getLogginHistory(){
+		return logginHistory;
+	}
+	
+	public int getBudget() {
+		return budget;
 	}
 	
 	

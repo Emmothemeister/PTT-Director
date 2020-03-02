@@ -28,4 +28,16 @@ public class Request {
 	public String getComm() {
 		return comment;
 	}
+	
+	public int getID() {
+		return requestID;
+	}
+	
+	public boolean getStatus() {
+		return approved;
+	}
+	
+	public String toString() {
+		return "Request ID: " + requestID + " Cost: " + cost + " Approved: " + approved;
+	}
 }

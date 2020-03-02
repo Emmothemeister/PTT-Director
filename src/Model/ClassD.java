@@ -20,5 +20,6 @@ public class ClassD extends Staff{
 		applyings = new ArrayList<ClaimForm>();
 		rejecteds = new ArrayList<ClaimForm>();
 		approveds = new ArrayList<ClaimForm>();
+		authority = 1;
 	}
 }
