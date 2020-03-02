@@ -6,8 +6,8 @@ public class Recruiter extends Staff{
 	
 	private ArrayList<Applicants> applicants;
 	
-	public Recruiter(String s, String u, String p, int c) {
-		super(s,u,p,c);
+	public Recruiter(String s, String u, String p, int c, School sch) {
+		super(s,u,p,c,sch);
 		applicants = new ArrayList<Applicants>();
 		authority = 4;
 	}

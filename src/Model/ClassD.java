@@ -11,8 +11,8 @@ public class ClassD extends Staff{
 	private ArrayList<ClaimForm> rejecteds;
 	private ArrayList<ClaimForm> approveds;
 	
-	public ClassD(String s, String u, String p, int c, Classes cla, Course Cour) {
-		super(s,u,p,c);
+	public ClassD(String s, String u, String p, int c, Classes cla, Course Cour, School sch) {
+		super(s,u,p,c,sch);
 		itsClass = cla;
 		course = Cour;
 		skills = new ArrayList<Skill>();

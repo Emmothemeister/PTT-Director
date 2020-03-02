@@ -2,14 +2,16 @@ package Model;
 
 public class Request {
 	private int requestID;
+
 	private String content;
 	private boolean approved;
 	private double cost;
 	private Time submitTime;
 	private String comment;
 
-	public Request(String cont, double c, String comm) {
-		requestID = requestID++;
+	public Request(String cont, double c, String comm, School s) {
+		requestID = s.getRequestNewID();
+		s.increaseRequestNewID();
 		content = cont;
 		comment = comm;
 		cost = c;

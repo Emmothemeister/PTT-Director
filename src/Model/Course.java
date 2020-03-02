@@ -10,9 +10,12 @@ public class Course {
 	private ArrayList<Classes> classes;
 	private ArrayList<Teacher> teachers;
 	private ArrayList<Request> requests;
+	private School school;
 	
-	public Course(String n, String intro) {
-		courseID = courseID++;
+	public Course(String n, String intro, School sch) {
+		school = sch;
+		courseID = school.getCourseNewID();
+		school.increaseCourseNewID();
 		courseName = n;
 		director = null;
 		introduction = intro;

@@ -10,8 +10,8 @@ public class testView {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		School s = new School();
-		Course c = new Course("PE", "train");
-		CourseD d = new CourseD("Emmo", "goloku", "123456", 123456, c);
+		Course c = new Course("PE", "train", s);
+		CourseD d = new CourseD("Emmo", "goloku", "123456", 123456, c, s);
 		CourseDCon_Main controller = new CourseDCon_Main(s, d);
 		CourseDUI_Main GUI = new CourseDUI_Main(s, d, controller);
 		controller.setView(GUI);

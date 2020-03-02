@@ -7,11 +7,13 @@ public class Classes {
 	private int newID = 0;
 	private ArrayList<Teacher> teachers;
 	private ArrayList<Course> courses;
+	private School school;
 	
-	public Classes() {
+	public Classes(School sch) {
 		//automatic increment ID for classes
-		newID++;
-		classID = newID;
+		school = sch;
+		classID = school.getClassNewID();
+		school.increaseClassNewID();
 		teachers = new ArrayList<Teacher>();
 		courses = new ArrayList<Course>();
 	}

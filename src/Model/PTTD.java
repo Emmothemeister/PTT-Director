@@ -11,8 +11,8 @@ public class PTTD extends Staff{
 	
 	
 	
-	public PTTD(String n, String u, String p, int c){
-		super(n,u,p,c); // get a automatically increment SID
+	public PTTD(String n, String u, String p, int c, School sch){
+		super(n,u,p,c,sch); // get a automatically increment SID
 		authority = 5;
 		requestBox = new ArrayList<Request>();
 		

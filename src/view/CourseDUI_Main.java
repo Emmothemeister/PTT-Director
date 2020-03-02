@@ -13,7 +13,7 @@ import Model.School;
 
 public class CourseDUI_Main extends JFrame{
 	private final int UNIT = 20;
-	private Font f = new Font("TimesRoman", Font.PLAIN, 20);
+	private Font f = new Font("TimesRoman", Font.PLAIN, 30);
 	private JPanel mainPanel, centralPanel, g1,g2,g3;
 	public JButton write;
 	public JButton enquiry, absence;
@@ -33,6 +33,7 @@ public class CourseDUI_Main extends JFrame{
 		mainPanel.add(centralPanel = new JPanel());
 		centralPanel.setLayout(new GridLayout(7,1));
 		JLabel welcome = new JLabel("Welcome! Dear Course Director " + d.getSName());
+		welcome.setFont(f);
 		centralPanel.add(welcome);
 		centralPanel.add(g1 = new JPanel());
 		write = new JButton("Write a new Teaching Request");

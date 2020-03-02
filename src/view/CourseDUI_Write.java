@@ -36,8 +36,10 @@ public class CourseDUI_Write extends JFrame{
 		mainPanel.add(centralPanel);
 		centralPanel.setLayout(new GridLayout(6,1));
 		content = new JTextField(16*UNIT);
+		content.setText("Please enter contents here");
 		gap1.setSize(2*UNIT, 34*UNIT);
 		cost = new JTextField(4*UNIT);
+		cost.setText("Please enter the [number] of cost here");
 		gap2.setSize(2*UNIT, 34*UNIT);
 		submit = new JButton("Submit Request");
 		submit.setSize(4*UNIT, 34*UNIT);
@@ -58,11 +60,11 @@ public class CourseDUI_Write extends JFrame{
 	}
 	
 	public String getContent() {
-		return cont;
+		return content.getText();
 	}
 	
 	public String getCost() {
-		return cos;
+		return cost.getText();
 	}
 	
 	public void clearCost() {

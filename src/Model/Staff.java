@@ -3,22 +3,24 @@ package Model;
 import java.util.ArrayList;
 
 public class Staff {
-	private int SID = 0;
-	private int newID;
+	private int SID;
 	private String SName;
 	private String UName;
 	private String password;
 	private ArrayList<Mail> mailBox;
 	private int contact;
+	private School school;
 	private ArrayList<LogginHistory> logginHistory;
 	protected int authority;
 	
 	//Authority: 0=teacher, 1=classD, 2=courseD, 3=FND, 4=Recruiter, 5=PTTD
-	public Staff(String s, String u, String p, int c) {
+	public Staff(String s, String u, String p, int c, School sch) {
+		school = sch;
 		SName = s;
 		UName = u;
 		password = p;
-		newID = SID++;
+		SID = school.getStaffNewID();
+		school.increaseStaffNewID();
 		mailBox = new ArrayList<Mail>();
 		contact = c;
 		logginHistory = new ArrayList<LogginHistory>();
@@ -26,7 +28,7 @@ public class Staff {
 	}
 	
 	public int getSID() {
-		return newID;
+		return SID;
 	}
 	
 	public String getSName() {
@@ -35,5 +37,9 @@ public class Staff {
 	
 	public int getAuthority() {
 		return authority;
+	}
+	
+	public int getContact() {
+		return contact;
 	}
 }

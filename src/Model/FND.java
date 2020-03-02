@@ -12,8 +12,8 @@ public class FND extends Staff{
 	 * received ClaimForm objects send from Teachers.
 	 */
 	
-	public FND(String s, String u, String p, int c) {
-		super(s,u,p,c);
+	public FND(String s, String u, String p, int c, School sch) {
+		super(s,u,p,c,sch);
 		formBox = new ArrayList<ClaimForm>();
 		authority = 3;
 	}

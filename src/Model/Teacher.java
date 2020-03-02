@@ -6,12 +6,14 @@ public class Teacher extends Staff{
 	
 	private ArrayList<Skill> skills;
 	private ArrayList<Mail> mailBox;
+	private boolean absent;
 	
-	public Teacher(String s,String u, String p, int c) {
-		super(s,u,p,c);
+	public Teacher(String s,String u, String p, int c, School sch) {
+		super(s,u,p,c, sch);
 		skills = new ArrayList<Skill>();
 		mailBox = new ArrayList<Mail>();
 		authority = 0;
+		absent = false;
 	}
 	
 	public String[] getSkills(){
@@ -20,6 +22,10 @@ public class Teacher extends Staff{
 			skillList[i] = skills.get(i).toString();
 		}
 		return skillList;
+	}
+	
+	public boolean getAbsent() {
+		return absent;
 	}
 		
 	

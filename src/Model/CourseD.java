@@ -13,8 +13,8 @@ public class CourseD extends Staff{
 	private ArrayList<Request> approveds;
 	private ArrayList<Teacher> supervisedTeachers;
 	
-	public CourseD(String s, String u, String p, int o, Course c) {
-		super(s,u,p,o);
+	public CourseD(String s, String u, String p, int o, Course c, School sch) {
+		super(s,u,p,o, sch);
 		course = c;
 		applyings = new ArrayList<Request>();
 		rejecteds = new ArrayList<Request>();
@@ -27,12 +27,13 @@ public class CourseD extends Staff{
 		return applyings;
 	}
 	
+	//The three methods below can be used to get and print the list of requests
 	public String[] getApplyings(){
 		String[] applyingList = new String[applyings.size()];
 		for(int i =0; i < applyings.size(); i++) {
 			Request r = applyings.get(i);
-			applyingList[i] = "RequestID =" + r.getID() + ", Request Content: " + r.getContt() + ", Comment: " + r.getComm() + "/n"
-					+ "Cost: " + r.getCost() + "Approved: " + r.getStatus();
+			applyingList[i] = "RequestID =  " + r.getID() + "  , Request Content: " + r.getContt() + "  , Comment: " + r.getComm()
+					+ "  Cost:  " + r.getCost() + "Approved: " + r.getStatus();
 		}
 		return applyingList;
 	}
@@ -42,7 +43,7 @@ public class CourseD extends Staff{
 		for(int i =0; i < approveds.size(); i++) {
 			Request r = approveds.get(i);
 			approvedsList[i] = "RequestID =" + r.getID() + ", Request Content: " + r.getContt() + ", Comment: " + r.getComm() + "/n"
-					+ "Cost: " + r.getCost() + "Approved: " + r.getStatus();
+					+ "Cost: " + r.getCost() + "  Approved: " + r.getStatus();
 		}
 		return approvedsList;
 	}
@@ -59,6 +60,16 @@ public class CourseD extends Staff{
 	
 	public ArrayList<Teacher> getSupervisedList(){
 		return supervisedTeachers;
+	}
+	
+	//this method will return the list of supervised teacher for printing and selection
+	public String[] getSupervisedArray() {
+		String[] superArray = new String[supervisedTeachers.size()];
+		for(int i =0; i< supervisedTeachers.size(); i++) {
+			Teacher t = supervisedTeachers.get(i);
+			superArray[i] = "ID " + t.getSID() + "  Teacher Name: " + t.getSName() + "  Absent:" + t.getAbsent();
+		}
+		return superArray;
 	}
 	
 }

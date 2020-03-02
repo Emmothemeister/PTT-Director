@@ -20,6 +20,7 @@ public class CourseDCon_Write implements ActionListener {
 	private CourseDCon_Main mainControl;
 	private School school;
 	private int cost;
+	private boolean isNumeric;
 	
 	public CourseDCon_Write(School s, CourseD d, CourseDCon_Main c) {
 		mainControl = c;
@@ -46,17 +47,17 @@ public class CourseDCon_Write implements ActionListener {
 			 * if the input content of cost is an Integer, then parse it into int type
 			 */
 			
-			if(isNumeric(view.getCost())) {
+			if(view.getCost() == null || "".contentEquals(view.getCost())) {
+				JOptionPane.showMessageDialog(null, "Please enter an integer as the cost");
+				view.clearCost();
+			}else {
 				cost = Integer.valueOf(view.getCost().toString());
-				model.getApplyingArrayList().add(new Request(view.getContent(), cost, "This is the comment."));
-				school.getApplyingRequests().add(new Request(view.getContent(), cost, "This is the comment."));
+				Request r = new Request(view.getContent(), cost, "This is the comment.",school);
+				model.getApplyingArrayList().add(r);
+				school.getApplyingRequests().add(r);
 				view.clearCost();
 				view.clearContent();
 				
-			}
-			else {
-				JOptionPane.showMessageDialog(null, "Please enter an integer as the cost");
-				view.clearCost();
 			}
 			
 			
@@ -81,4 +82,6 @@ public class CourseDCon_Write implements ActionListener {
 		return null;
 		
 	}
+	
+	
 }

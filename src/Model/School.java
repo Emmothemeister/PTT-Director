@@ -17,8 +17,18 @@ public class School {
 	private ArrayList<Requirement> requirementList; 
 	private ArrayList<LogginHistory> logginHistory;
 	private int budget;
+	private int requestID_new;
+	private int staffID_new;
+	private int courseID_new;
+	private int classID_new;
+	private int claimFormID_new;
 	
 	public School() {
+		staffID_new = 0;
+		requestID_new = 0;
+		courseID_new = 0;
+		classID_new = 0;
+		claimFormID_new = 0;
 		staffList = new ArrayList<Staff>();
 		applyingRequests = new ArrayList<Request>();
 		approvedRequests = new ArrayList<Request>();
@@ -27,6 +37,46 @@ public class School {
 		requirementList = new ArrayList<Requirement>();
 		logginHistory = new ArrayList<LogginHistory>();
 		budget = 0;
+	}
+	
+	public int getClaimFormNewID() {
+		return claimFormID_new;
+	}
+	
+	public void increaseClaimFormNewID() {
+		claimFormID_new++;
+	}
+	
+	public int getClassNewID() {
+		return classID_new;
+	}
+	
+	public void increaseClassNewID() {
+		classID_new++;
+	}
+	
+	public int getCourseNewID() {
+		return courseID_new;
+	}
+	
+	public void increaseCourseNewID() {
+		courseID_new++;
+	}
+	
+	public int getStaffNewID() {
+		return staffID_new;
+	}
+	
+	public void increaseStaffNewID() {
+		staffID_new++;
+	}
+	
+	public int getRequestNewID() {
+		return requestID_new;
+	}
+	
+	public void increaseRequestNewID() {
+		requestID_new++;
 	}
 	
 	public ArrayList<Staff> getStaffList(){
