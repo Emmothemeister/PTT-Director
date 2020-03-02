@@ -42,6 +42,11 @@ public class School {
 	}
 	
 	//this method will initial and create an ArrayList of Teachers
+	
+	public void addTeacher(Teacher t) {
+		staffList.add(t);
+	}
+	
 	public void setTeacherList() {
 		teacherList.clear();
 		for(int i=0; i < staffList.size(); i++) {
@@ -49,6 +54,14 @@ public class School {
 				teacherList.add((Teacher) staffList.get(i));
 			}
 		}
+	}
+	
+	public String[] getTeacherStringArray() {
+		String[] teacherListStringArray = new String[teacherList.size()];
+		for(int i=0; i<teacherList.size();i++) {
+			teacherListStringArray[i] = "SID: " + teacherList.get(i).getSID() + "  , Teacher Name: " + teacherList.get(i).getSName() + "  Absent: " + teacherList.get(i).getAbsent();
+		}
+		return teacherListStringArray;
 	}
 	
 	public ArrayList<Teacher> getTeacherList(){

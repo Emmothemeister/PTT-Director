@@ -56,7 +56,11 @@ public class Teacher extends Staff{
 	public boolean getAbsent() {
 		return absent;
 	}
-		
+	
+	public void setAbsent(int a) {
+		if(a == 0)absent = true;
+		if(a == 1)absent = false;
+	}
 	
 	public String toString(){
 		return "SID: " + getSID() + ", Teacher Name: " + getSName() + ", Skills: " + getSkills();

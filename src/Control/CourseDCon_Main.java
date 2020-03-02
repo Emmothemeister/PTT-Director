@@ -1,10 +1,8 @@
 package Control;
 
-import Model.CourseD;
-import Model.School;
-import view.CourseDUI_History;
-import view.CourseDUI_Main;
-import view.CourseDUI_Write;
+import Model.*;
+import view.*;
+import Control.*;
 
 import java.awt.event.*;
 
@@ -39,6 +37,13 @@ public class CourseDCon_Main implements ActionListener{
 			viewObject.setVisible(false);
 			historyView.controller.setView(historyView);
 			historyView.setVisible(true);
+			
+		}else if (e.getSource() == viewObject.absence) {
+			JOptionPane.showMessageDialog(null, "Jumping");
+			CourseDUI_Absence absenceView = new CourseDUI_Absence(school, model, this);
+			viewObject.setVisible(false);
+			absenceView.controller.setView(absenceView);
+			absenceView.setVisible(true);
 		}
 	}
 	

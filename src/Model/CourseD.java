@@ -23,6 +23,10 @@ public class CourseD extends Staff{
 		authority = 2;
 	}
 	
+	public void addTeacher(Teacher t) {
+		supervisedTeachers.add(t);
+	}
+	
 	public ArrayList<Request> getApplyingArrayList(){
 		return applyings;
 	}

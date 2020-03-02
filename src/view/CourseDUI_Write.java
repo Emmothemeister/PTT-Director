@@ -14,8 +14,6 @@ public class CourseDUI_Write extends JFrame{
 	private Font f = new Font("TimesRoman", Font.PLAIN, 20);
 	private JPanel mainPanel = new JPanel();
 	private JPanel centralPanel = new JPanel();
-	private JPanel gap1 = new JPanel();
-	private JPanel gap2 = new JPanel();
 	private String cont;
 	private String cos;
 	public CourseDCon_Write controller;
@@ -34,13 +32,12 @@ public class CourseDUI_Write extends JFrame{
 		mainPanel.setBorder(emptyBorder);
 		
 		mainPanel.add(centralPanel);
-		centralPanel.setLayout(new GridLayout(6,1));
+		centralPanel.setLayout(new GridLayout(4,1));
 		content = new JTextField(16*UNIT);
 		content.setText("Please enter contents here");
-		gap1.setSize(2*UNIT, 34*UNIT);
+
 		cost = new JTextField(4*UNIT);
 		cost.setText("Please enter the [number] of cost here");
-		gap2.setSize(2*UNIT, 34*UNIT);
 		submit = new JButton("Submit Request");
 		submit.setSize(4*UNIT, 34*UNIT);
 		submit.addActionListener(controller);
@@ -48,9 +45,7 @@ public class CourseDUI_Write extends JFrame{
 		back.setSize(4*UNIT,34*UNIT);
 		back.addActionListener(controller);
 		centralPanel.add(content);
-		centralPanel.add(gap1);
 		centralPanel.add(cost);
-		centralPanel.add(gap2);
 		centralPanel.add(submit);
 		centralPanel.add(back);
 		

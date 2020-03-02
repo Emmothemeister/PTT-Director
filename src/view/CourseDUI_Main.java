@@ -46,7 +46,7 @@ public class CourseDUI_Main extends JFrame{
 		centralPanel.add(g3 = new JPanel());
 		absence = new JButton("Mark a teacher as absence from some lectures");
 		centralPanel.add(absence);
-		//absence.addActionListener();
+		absence.addActionListener(controller);
 		
 	}
 	

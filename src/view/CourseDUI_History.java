@@ -29,10 +29,10 @@ public class CourseDUI_History extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(mainPanel = new JPanel());
 		mainPanel.setLayout(new BorderLayout());
-		Border emptyBorder = BorderFactory.createEmptyBorder(3*UNIT,3*UNIT,3*UNIT,3*UNIT);
+		Border emptyBorder = BorderFactory.createEmptyBorder(1*UNIT,1*UNIT,1*UNIT,1*UNIT);
 		mainPanel.setBorder(emptyBorder);
 		mainPanel.add(centralPanel = new JPanel());
-		centralPanel.setLayout(new GridLayout(5,1));
+		centralPanel.setLayout(new GridLayout(3,1));
 		
 		
 		//top
@@ -41,10 +41,6 @@ public class CourseDUI_History extends JFrame{
 		introduction.setFont(f);
 		
 		//central part: lists
-		g1 = new JPanel();
-		g1.setSize(24*UNIT,1*UNIT);
-		g2 = new JPanel();
-		g2.setSize(24*UNIT,1*UNIT);
 		c1 = new JPanel();
 		c1.setSize(24*UNIT, 32*UNIT);
 		c1.setLayout(new GridLayout(1,3));
@@ -67,14 +63,12 @@ public class CourseDUI_History extends JFrame{
 		
 		//bottom
 		back = new JButton("Return Back");
-		back.setSize(24*UNIT,3*UNIT);
+		back.setSize(3*UNIT,24*UNIT);
 		back.addActionListener(controller);
 		
 		//composition
 		centralPanel.add(introduction);
-		centralPanel.add(g1);
 		centralPanel.add(c1);
-		centralPanel.add(g2);
 		centralPanel.add(back);
 		}
 	
