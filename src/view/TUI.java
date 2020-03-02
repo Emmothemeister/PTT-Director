@@ -18,18 +18,20 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.Border;
-
-import Model.ClaimForm;
-
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class TUI extends JFrame implements ActionListener{
 	
@@ -39,7 +41,6 @@ public class TUI extends JFrame implements ActionListener{
 //	private JButton button1, button2;
 	private Timer tmr;
 	private JLabel timeLabel;
-	private ArrayList<ClaimForm> mail = new ArrayList<>();
 	
 	public TUI() {
 		this.setSize(40*UNIT,30*UNIT);
@@ -50,218 +51,166 @@ public class TUI extends JFrame implements ActionListener{
 		
 		final JTabbedPane tabbedPane = new JTabbedPane();
 		
-		JTabbedPane mailBox = new JTabbedPane(JTabbedPane.LEFT);
-		JPanel inbox = new JPanel();
-		JPanel sent = new JPanel();
-		JPanel bin = new JPanel();
-		mailBox.addTab("Inbox", inbox);
-		mailBox.addTab("Sent", sent);
-		mailBox.addTab("Bin", bin);
+		//pending course column
+		JPanel pendingCourse = new JPanel(new BorderLayout());
 		
-		
-		
-		JPanel tab1 = new JPanel();
-		JPanel tab2 = new JPanel(new GridLayout(1, 1));
-		JPanel tab3 = new JPanel(new GridLayout(1, 1));
-		
-		
-		JLabel inbox1 = new JLabel("Please fill in a claim form for dd/mm/yyyy");
-		inbox1.setFont(f);
-		JLabel inbox2 = new JLabel("Please fill in a claim form for dd/mm/yyyy");
-		inbox2.setFont(f);
-		JLabel sent1 = new JLabel("Sent Mail");
-		JLabel bin1 = new JLabel("This is the bin");
-		inbox.add(inbox1);
-		inbox.add(inbox2);
-		sent.add(sent1);
-		bin.add(bin1);
-
-		
-		//JTable for Historical
-		Object[] columnNames = {"Claim Date", "Claim Title", "Claim Amount"};
+		//Pending class table
+		String[] columnNames = {"Course Date", "Course Title", "Course Location"};
 		Object[][] rowData = {
+				{"01/01/2020", "Software Engineering", "Boyd Orr Building:222"},
+				{"02/01/2020", "Advanced Programming", "Gregory Building:109"},
+				{"03/01/2020", "Internet Technology", "Kelvin Building:222"},
+				{"04/01/2020", "Algorithms & Data Structures", "Gregory Building:109"},
+				{"05/01/2020", "Cyber Security Fundamentals", "Boyd Orr Building:203"},
+				{"06/01/2020", "Software Engineering", "Boyd Orr Building:222"},
+				{"07/01/2020", "Advanced Programming", "Gregory Building:109"},
+				{"08/01/2020", "Internet Technology", "Kelvin Building:222"},
+				{"09/01/2020", "Algorithms & Data Structures", "Gregory Building:109"},
+				{"10/01/2020", "Cyber Security Fundamentals", "Boyd Orr Building:203"},
+				{"01/01/2020", "Software Engineering", "Boyd Orr Building:222"},
+				{"02/01/2020", "Advanced Programming", "Gregory Building:109"},
+				{"03/01/2020", "Internet Technology", "Kelvin Building:222"},
+				{"04/01/2020", "Algorithms & Data Structures", "Gregory Building:109"},
+				{"05/01/2020", "Cyber Security Fundamentals", "Boyd Orr Building:203"},
+				{"06/01/2020", "Software Engineering", "Boyd Orr Building:222"},
+				{"07/01/2020", "Advanced Programming", "Gregory Building:109"},
+				{"08/01/2020", "Internet Technology", "Kelvin Building:222"},
+				{"09/01/2020", "Algorithms & Data Structures", "Gregory Building:109"},
+				{"10/01/2020", "Cyber Security Fundamentals", "Boyd Orr Building:203"},
+				{"01/01/2020", "Software Engineering", "Boyd Orr Building:222"},
+				{"02/01/2020", "Advanced Programming", "Gregory Building:109"},
+				{"03/01/2020", "Internet Technology", "Kelvin Building:222"},
+				{"04/01/2020", "Algorithms & Data Structures", "Gregory Building:109"},
+				{"05/01/2020", "Cyber Security Fundamentals", "Boyd Orr Building:203"},
+				{"06/01/2020", "Software Engineering", "Boyd Orr Building:222"},
+				{"07/01/2020", "Advanced Programming", "Gregory Building:109"},
+				{"08/01/2020", "Internet Technology", "Kelvin Building:222"},
+				{"09/01/2020", "Algorithms & Data Structures", "Gregory Building:109"},
+				{"10/01/2020", "Cyber Security Fundamentals", "Boyd Orr Building:203"},
+		};
+		JTable pc = new JTable(rowData,columnNames);
+		JScrollPane scrollPane = new JScrollPane();		
+		
+		scrollPane.setViewportView(pc);
+		pendingCourse.add(scrollPane,BorderLayout.CENTER);
+		
+		JPanel pendingCourseButtons = new JPanel(new FlowLayout());
+		JButton applyForLeave = new JButton("Apply For Leave");
+		pendingCourseButtons.add(applyForLeave);
+		pendingCourse.add(pendingCourseButtons,BorderLayout.SOUTH);
+		
+//		//InputDialog
+//		applyForLeave.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				public void actionPerformed(ActionEvent e) {
+//					String inputContent = JOptionPane.showInputDialog(
+//							"Leaving Reason:",
+//							"Fill in your leaving reason here"
+//					);
+//				}
+//			}
+//		});		
+		
+		//New Claims
+		JPanel newClaims = new JPanel(new BorderLayout());
+		
+		//Show courses in table needed to be claimed
+		String[] title = {"Course Date", "Course Title", "Course Location"};
+		Object[][] claimDetails = {
+				{"01/01/2020", "Software Engineering", "Boyd Orr Building:222"},
+				{"02/01/2020", "Advanced Programming", "Gregory Building:109"},
+				{"03/01/2020", "Internet Technology", "Kelvin Building:222"},
+				{"04/01/2020", "Algorithms & Data Structures", "Gregory Building:109"},
+				{"05/01/2020", "Cyber Security Fundamentals", "Boyd Orr Building:203"},
+		};
+		JTable nc = new JTable(claimDetails,title);
+		JScrollPane scrollPane2 = new JScrollPane();		
+		
+		scrollPane2.setViewportView(nc);
+		newClaims.add(scrollPane2,BorderLayout.CENTER);
+		
+		JPanel newClaimsButtons = new JPanel(new FlowLayout());
+		JButton fillInClaimForm = new JButton("Fill in Claim Form");
+		newClaimsButtons.add(fillInClaimForm);
+		newClaims.add(newClaimsButtons,BorderLayout.SOUTH);
+		
+		//InputDialog
+		fillInClaimForm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String inputContent = JOptionPane.showInputDialog(
+						"Claim Amount:",
+						"Fill in amount here"
+				);
+				System.out.println(inputContent);
+			}
+		});
+		
+		//JTable for Historical claims
+		String[] c = {"Claim Date", "Claim Title", "Claim Amount"};
+		Object[][] r = {
 				{"01/01/2020", "Advanced Programming", 300},
 				{"05/01/2020", "Internet Technology", 200},
 				{"10/01/2020", "Advanced Programming", 300},
 				{"15/01/2020", "Internet Technology", 200},
 		};
-		JTable table = new JTable(rowData, columnNames);
-		JPanel panel = new JPanel(new BorderLayout());
+		JTable table = new JTable(r, c);
+		JPanel panel = new JPanel(new BorderLayout());		
 		
-//		JScrollPane scrollPane = new JScrollPane();
 		panel.add(table.getTableHeader(), BorderLayout.NORTH);
 		panel.add(table, BorderLayout.CENTER);
-//		scrollPane.add(table);
 		
 		
-
+		//Absence Record
+		JScrollPane absenceScrollPane = new JScrollPane();
+		String[] absenceTitle = {"Course Date", "Course Title", "Course Location"};
+		Object[][] absenceDetails = {
+				{"01/01/2020", "Software Engineering", "Boyd Orr Building:222"},
+				
+		};
+		JTable ar = new JTable(absenceDetails,absenceTitle);				
+		absenceScrollPane.setViewportView(ar);	
 		
-		timeLabel = new JLabel();
-//		leftCenter.add(timeLabel);
-		this.setTimer(timeLabel);
+		//Outer border
+		JPanel Border1 = new JPanel();
+		JPanel Border2 = new JPanel();
+		JPanel Border3 = new JPanel();
+		JPanel Border4 = new JPanel();
+		JPanel centerBoard = new JPanel(new BorderLayout());
 		
+		//border size
+		Border1.setPreferredSize(new Dimension(0,UNIT));
+		Border2.setPreferredSize(new Dimension(0,UNIT));
+		Border3.setPreferredSize(new Dimension(UNIT,0));
+		Border4.setPreferredSize(new Dimension(UNIT,0));
 		
-		JPanel eastPanel = new JPanel(new FlowLayout());
-		JPanel centerPanel = new JPanel(new BorderLayout());
+		this.add(Border1, BorderLayout.NORTH);
+		this.add(Border2, BorderLayout.SOUTH);
+		this.add(Border3, BorderLayout.WEST);
+		this.add(Border4, BorderLayout.EAST);
+		this.add(centerBoard, BorderLayout.CENTER);
 		
-		eastPanel.setBorder(blackline);
-		centerPanel.setBorder(blackline);
-		
-		JPanel topBoard = new JPanel(new FlowLayout());
-		JPanel leftBorder1 = new JPanel();
-		JPanel leftBorder2 = new JPanel();
-		JPanel leftBorder3 = new JPanel();
-		JPanel leftBorder4 = new JPanel();
-		JPanel rightBorder1 = new JPanel();
-		JPanel rightBorder2 = new JPanel();
-		JPanel leftCenter = new JPanel(new BorderLayout());
-		JPanel rightCenter = new JPanel(new GridLayout(0,1));
-		
-		leftBorder1.setPreferredSize(new Dimension(0,UNIT));
-		leftBorder2.setPreferredSize(new Dimension(0,UNIT));
-		leftBorder3.setPreferredSize(new Dimension(UNIT,0));
-		leftBorder4.setPreferredSize(new Dimension(UNIT,0));
-		rightBorder1.setPreferredSize(new Dimension(UNIT,0));
-		rightBorder2.setPreferredSize(new Dimension(UNIT,0));
-		
-//		topBoard.setBorder(blackline);
-//		leftBorder2.setBorder(blackline);
-//		leftBorder3.setBorder(blackline);
-//		leftBorder4.setBorder(blackline);
-		
-		centerPanel.add(leftBorder1, BorderLayout.NORTH);
-		centerPanel.add(leftBorder2, BorderLayout.SOUTH);
-		centerPanel.add(leftBorder3, BorderLayout.WEST);
-		centerPanel.add(leftBorder4, BorderLayout.EAST);
-		centerPanel.add(leftCenter, BorderLayout.CENTER);
-		eastPanel.add(rightBorder1, BorderLayout.WEST);
-		eastPanel.add(rightBorder2, BorderLayout.EAST);
-		eastPanel.add(rightCenter, BorderLayout.CENTER);
-		leftCenter.add(topBoard, BorderLayout.NORTH);
-		
-		JPanel TopInstruction = new JPanel(new FlowLayout());
+		JPanel topInstruction = new JPanel(new FlowLayout());
 		
 		JLabel instruction = new JLabel("Hello Teacher! Today is: ");
 		instruction.setFont(f);
 		
-		TopInstruction.add(instruction);
-		
-		JLabel title = new JLabel("Please fill in the claim form here:");
-		JLabel claimDate = new JLabel("Claim Date     :");
-		JLabel claimTitle = new JLabel("Claim Title     :");
-		JLabel claimAmount = new JLabel("Claim Amount:");
-		
-		title.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		title.setFont(f);
-		claimDate.setFont(f);
-		claimTitle.setFont(f);
-		claimAmount.setFont(f);
-		
-		JTextField cd = new JTextField(10);
-		JTextField ct = new JTextField(10);
-		JTextField ca = new JTextField(10);
-		cd.setFont(f);
-		ct.setFont(f);
-		ca.setFont(f);
-		
-		JPanel TextFields = new JPanel(new GridLayout(5,1));
-		JPanel box1 = new JPanel();
-		JPanel box2 = new JPanel();
-		JPanel box3 = new JPanel();
-		JPanel submit = new JPanel();
-		box1.add(claimDate);
-		box1.add(cd);
-		box2.add(claimTitle);
-		box2.add(ct);
-		box3.add(claimAmount);
-		box3.add(ca);
-		
-		JButton s = new JButton("Submit");
-		JButton c = new JButton("Clear");
-		submit.add(c);
-		submit.add(s);
-		TextFields.add(title);
-		TextFields.add(box1);
-		TextFields.add(box2);
-		TextFields.add(box3);
-		TextFields.add(submit);
-		
-		//Ask for leave
-//		JPanel AFK = new JPanel();
-		JLabel leavingTitle = new JLabel("Please inform recruiter your leaving here:");
-		JLabel leavingDate = new JLabel("Leaving Date     :");
-		JLabel leavingCourseTitle = new JLabel("Leaving Coure Name:");
-		JLabel leavingReason = new JLabel("Leaving Reason   :");
-		
-		leavingTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		leavingTitle.setFont(f);
-		leavingDate.setFont(f);
-		leavingCourseTitle.setFont(f);
-		leavingReason.setFont(f);
-		
-		JTextField ld = new JTextField(10);
-		JTextField lc = new JTextField(10);
-		JTextField lr = new JTextField(10);
-		ld.setFont(f);
-		lc.setFont(f);
-		lr.setFont(f);
-		
-		JPanel awayForm = new JPanel(new GridLayout(6,1));
-		JPanel box4 = new JPanel();
-		JPanel box5 = new JPanel();
-		
-		JPanel buttons = new JPanel();
-		box4.add(leavingDate);
-		box4.add(ld);
-		box5.add(leavingCourseTitle);
-		box5.add(lc);
+		topInstruction.add(instruction);
+		timeLabel = new JLabel();	
+		topInstruction.add(timeLabel);
+				
+//		title.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		
-		JButton ss = new JButton("Submit");
-		JButton cc = new JButton("Clear");
-		buttons.add(cc);
-		buttons.add(ss);
-		awayForm.add(leavingTitle);
-		awayForm.add(box4);
-		awayForm.add(box5);
-		awayForm.add(leavingReason);
-		awayForm.add(lr);
-		awayForm.add(buttons);
-		
-//		AFK.add(awayForm);
-		
-		
-		tabbedPane.addTab("  Your Mail Box  ", mailBox);
-		tabbedPane.addTab(" New Claim Form  ", TextFields);
+		tabbedPane.addTab(" Pending Course  ", pendingCourse);
+		tabbedPane.addTab(" New Claim Form  ", newClaims);
 		tabbedPane.addTab("Historical Claims", panel);
-		tabbedPane.addTab("  Ask For Leave  ", awayForm);
+		tabbedPane.addTab(" Absence Record  ", absenceScrollPane);
 			
 		
-		topBoard.add(instruction);
-		topBoard.add(timeLabel);
-		leftCenter.add(tabbedPane);
-			
-		
-		JLabel taskTitle = new JLabel("Your tasks:");
-		taskTitle.setFont(f);
-		taskTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		JLabel task1 = new JLabel(" 0 new mail!");
-		task1.setFont(f);
-		JLabel task2 = new JLabel(" 0 claim form to fill!");
-		task2.setFont(f);
-		
-		rightCenter.add(taskTitle);
-		rightCenter.add(task1);
-		rightCenter.add(task2);
+		centerBoard.add(topInstruction, BorderLayout.NORTH);
+		centerBoard.add(tabbedPane, BorderLayout.CENTER);
 
-		
-		
-//		this.add(eastPanel,BorderLayout.EAST);
-		this.add(centerPanel,BorderLayout.CENTER);
-		
+		this.setTimer(timeLabel);
 		this.setVisible(true);
 		
 	}
@@ -272,6 +221,7 @@ public class TUI extends JFrame implements ActionListener{
 		
 	}
 	
+	//Show current time
 	private void setTimer(JLabel time) {
 		timeLabel = time;
 		timeLabel.setFont(new Font("TimesRoman", Font.BOLD, 20));

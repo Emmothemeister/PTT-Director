@@ -68,7 +68,7 @@ public class FinancialDepartmentStaffView extends JFrame {
         leftCenter.add(topBoard, BorderLayout.NORTH);
 
         JPanel TopInstruction = new JPanel(new FlowLayout());
-        JLabel instruction = new JLabel("Hello Financial Department Staff! Today is: ");
+        JLabel instruction = new JLabel("Hello Staff! Today is: ");
         instruction.setFont(font);
 
         TopInstruction.add(instruction);
