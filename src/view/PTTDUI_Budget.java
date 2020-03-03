@@ -9,21 +9,28 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import Control.PTTDCon_Budget;
+import Control.PTTDCon_Main;
 import Model.Budget;
+import Model.PTTD;
 
 public class PTTDUI_Budget extends JFrame {
-	private Budget model;
-	private PTTDCon_Budget controller;
+	private PTTD pModel;
+	public Budget model;
+	public PTTDCon_Budget controller;
+	public PTTDCon_Main mainCon;
 	private final int UNIT = 20;
 	private Font f = new Font("TimesRoman", Font.PLAIN, 20);
 	private Border blackline = BorderFactory.createLineBorder(Color.gray, 2);
 	private Timer tmr;
 	private JLabel welcome, timeLabel;
-	private JPanel Budget, Clock;
+	private JPanel Budget, Clock, ButtonPanel, p1, p2, p3, p4, p5, p6;
+	public JButton back;;
 	
-	public PTTDUI_Budget(Budget b, PTTDCon_Budget cb) {
+	public PTTDUI_Budget(PTTD pm, Budget b, PTTDCon_Budget cb, PTTDCon_Main m) {
+		pModel = pm;
 		model = b;
-		controller = cb;
+		mainCon = m;
+		controller = new PTTDCon_Budget(pModel, model, mainCon);
 		this.setSize(40*UNIT,30*UNIT);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -31,6 +38,19 @@ public class PTTDUI_Budget extends JFrame {
 		this.setLayout(new BorderLayout());
 		this.add(Budget = new JPanel(new BorderLayout()), BorderLayout.CENTER);
 		this.add(Clock = new JPanel(), BorderLayout.NORTH);
+		this.add(p1 = new JPanel(), BorderLayout.EAST);
+		this.add(p2 = new JPanel(), BorderLayout.WEST);
+		this.add(ButtonPanel = new JPanel(), BorderLayout.SOUTH);
+		
+		ButtonPanel.setLayout(new BorderLayout());
+		back = new JButton("back");
+		back.addActionListener(controller);
+		ButtonPanel.add(back, BorderLayout.CENTER);
+		ButtonPanel.add(p3 = new JPanel(), BorderLayout.NORTH);
+		ButtonPanel.add(p4 = new JPanel(), BorderLayout.EAST);
+		ButtonPanel.add(p5 = new JPanel(), BorderLayout.SOUTH);
+		ButtonPanel.add(p6 = new JPanel(), BorderLayout.WEST);
+		
 		
 		// Budget table
 		String[] columnTitle = {"Item", "Number", "Cost"};
@@ -44,7 +64,7 @@ public class PTTDUI_Budget extends JFrame {
 		scrollPane.setViewportView(BT);
 		Budget.add(scrollPane, BorderLayout.CENTER);
 
-		welcome = new JLabel("Hello Teacher! Today is: ");
+		welcome = new JLabel("Hello Director! Today is: ");
 		welcome.setFont(f);
 		timeLabel = new JLabel();
 	

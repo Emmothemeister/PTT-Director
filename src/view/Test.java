@@ -13,14 +13,16 @@ import Model.School;
 public class Test {
 	public static void main(String[] args) {
 		School s = new School();
-		//PTTD model = new PTTD("a", "b", "c", 1, s);
-		//PTTDCon_Main controller = new PTTDCon_Main(model);
-		
+		PTTD model = new PTTD("a", "b", "c", 1, s);
+		PTTDCon_Main controller = new PTTDCon_Main(model);
+		PTTDUI_Main view = new PTTDUI_Main(model, controller);
+		view.controller.setView(view);
+		view.setVisible(true);
 		//Budget model = new Budget("a", 1, 2);
 		//PTTDCon_Budget controller = new PTTDCon_Budget(model);
 		
-		Request model = new Request("a", 2, "c", s);
-		PTTDCon_Req controller = new PTTDCon_Req(model);
+		//Request model = new Request("a", 2, "c", s);
+		//PTTDCon_Req controller = new PTTDCon_Req(model);
 		
 	}
 }

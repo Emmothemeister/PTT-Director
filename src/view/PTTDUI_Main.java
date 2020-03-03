@@ -8,8 +8,8 @@ import Control.PTTDCon_Main;
 import Model.PTTD;
 
 public class PTTDUI_Main extends JFrame{
-	private PTTD model; 
-	private PTTDCon_Main controller;
+	public PTTD model; 
+	public PTTDCon_Main controller;
 	private final int UNIT  = 20;
 	private Font f = new Font("TimesRoman", Font.PLAIN, 20);
 	private JPanel mainPanel, gap1, gap2;
@@ -29,7 +29,7 @@ public class PTTDUI_Main extends JFrame{
 		mainPanel.setBorder(emptyBorder);
 		mainPanel.setLayout(new GridLayout(5,1));
 		
-		welcome = new JLabel("Welcome! Dear PTT Director " + pd.getSName());
+		welcome = new JLabel("Welcome! Dear PTT Director " + model.getSName());
 		welcome.setFont(f);
 		checkBudget = new JButton("check Budget");
 		approvalReq = new JButton("approval teaching request");

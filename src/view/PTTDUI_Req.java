@@ -8,23 +8,29 @@ import java.util.Date;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import Control.PTTDCon_Main;
 import Control.PTTDCon_Req;
+import Model.PTTD;
 import Model.Request;
 
 public class PTTDUI_Req extends JFrame {
-	private Request model;
-	private PTTDCon_Req controller;
+	private PTTD pModel;
+	public Request model;
+	public PTTDCon_Req controller;
+	public PTTDCon_Main mainCon;
 	private final int UNIT = 20;
 	private Font f = new Font("TimesRoman", Font.PLAIN, 20);
 	private Border blackline = BorderFactory.createLineBorder(Color.gray, 2);
 	private Timer tmr;
 	private JLabel welcome, timeLabel;
-	private JPanel Budget, Clock, gap1, gap2;
-	public JButton approval;
+	private JPanel Budget, Clock, SouthPanel, ButtonPanel, p1, p2, p3, p4, p5, p6;
+	public JButton approval, back;
 	
-	public PTTDUI_Req(Request r, PTTDCon_Req cr) {
+	public PTTDUI_Req(PTTD pm, Request r, PTTDCon_Req cr, PTTDCon_Main cm) {
+		pModel = pm;
 		model = r;
-		controller = cr;
+		mainCon = cm;
+		controller = new PTTDCon_Req(pModel, model, mainCon);
 		this.setSize(40*UNIT,30*UNIT);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -32,11 +38,24 @@ public class PTTDUI_Req extends JFrame {
 		this.setLayout(new BorderLayout());
 		this.add(Budget = new JPanel(new BorderLayout()), BorderLayout.CENTER);
 		this.add(Clock = new JPanel(), BorderLayout.NORTH);
-		this.add(gap1 = new JPanel(), BorderLayout.EAST);
-		this.add(gap2 = new JPanel(), BorderLayout.WEST);
+		this.add(p1 = new JPanel(), BorderLayout.EAST);
+		this.add(p2 = new JPanel(), BorderLayout.WEST);
+		this.add(SouthPanel = new JPanel(), BorderLayout.SOUTH);
+		
+		SouthPanel.setLayout(new BorderLayout());
+		SouthPanel.add(ButtonPanel = new JPanel(), BorderLayout.CENTER);
+		SouthPanel.add(p3 = new JPanel(), BorderLayout.NORTH);
+		SouthPanel.add(p4 = new JPanel(), BorderLayout.SOUTH);
+		SouthPanel.add(p5 = new JPanel(), BorderLayout.WEST);
+		SouthPanel.add(p6 = new JPanel(), BorderLayout.EAST);
+		
+		ButtonPanel.setLayout(new GridLayout(1,2));
 		approval = new JButton("Approval");
+		back = new JButton("back");
 		approval.addActionListener(controller);
-		this.add(approval, BorderLayout.SOUTH);
+		back.addActionListener(controller);
+		ButtonPanel.add(approval);
+		ButtonPanel.add(back);
 		
 		
 		//Teaching Request
