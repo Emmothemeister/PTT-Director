@@ -11,4 +11,8 @@ public class Skill {
 	public String toString() {
 		return "Skill Name:" + content;
 	}
+	
+	public String getSkillName() {
+		return content;
+	}
 }

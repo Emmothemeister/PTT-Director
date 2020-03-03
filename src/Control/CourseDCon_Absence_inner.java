@@ -28,10 +28,10 @@ public class CourseDCon_Absence_inner implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == viewObject.confirm) {
 			JOptionPane.showMessageDialog(null, "This teacher has been marked as Absent!");	
-			teacher.setAbsent(0);
+			teacher.setAbsent(true);
 		} else if(e.getSource() == viewObject.cancel) {
 			JOptionPane.showMessageDialog(null, "This teacher has been marked as In Position!");
-			teacher.setAbsent(1);
+			teacher.setAbsent(false);
 		}
 	}
 }

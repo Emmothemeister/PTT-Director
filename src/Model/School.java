@@ -17,6 +17,7 @@ public class School {
 	private ArrayList<Requirement> requirementList; 
 	private ArrayList<LogginHistory> logginHistory;
 	private ArrayList<Teacher> teacherList;
+	private ArrayList<Skill> skillList;
 	private int budget;
 	private int requestID_new;
 	private int staffID_new;
@@ -38,12 +39,13 @@ public class School {
 		claimFormList = new ArrayList<ClaimForm>();
 		requirementList = new ArrayList<Requirement>();
 		logginHistory = new ArrayList<LogginHistory>();
+		skillList = new ArrayList<Skill>();
 		budget = 0;
 	}
 	
 	//this method will initial and create an ArrayList of Teachers
 	
-	public void addTeacher(Teacher t) {
+	public void addStaff(Staff t) {
 		staffList.add(t);
 	}
 	
@@ -132,6 +134,22 @@ public class School {
 	
 	public int getBudget() {
 		return budget;
+	}
+	
+	public void addSkill(Skill skl) {
+		skillList.add(skl);
+	}
+	
+	public String[] getSkillListStringArray() {
+		String[] skillListStringArray = new String[skillList.size()];
+		for(int i = 0; i<skillList.size();i++) {
+			skillListStringArray[i] = "Skill Name: " + skillList.get(i).getSkillName();
+		}
+		return skillListStringArray;
+	}
+	
+	public ArrayList<Skill> getSkillList(){
+		return skillList;
 	}
 	
 	

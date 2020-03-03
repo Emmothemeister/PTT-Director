@@ -3,7 +3,7 @@ package view;
 import Control.CourseDCon_Main;
 import Model.*;
 
-public class testView {
+public class CourseDTestView {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

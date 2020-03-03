@@ -45,6 +45,7 @@ public class CourseDUI_Absence extends JFrame{
 		teacherList = school.getTeacherStringArray();
 		list = new JList<String>(teacherList);
 		list.addMouseListener(controller);
+		list.setBorder(BorderFactory.createTitledBorder("Teacher List"));
 		
 		//bottom
 		confirm = new JButton("Check and Mark the selected teacher");

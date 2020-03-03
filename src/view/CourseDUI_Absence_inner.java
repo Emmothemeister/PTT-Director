@@ -52,7 +52,7 @@ public class CourseDUI_Absence_inner extends JFrame{
 		topPanel.add(teacherName);
 		
 		//central
-		String[] courseList = teacher.getPendingClassList();
+		String[] courseList = teacher.getPendingCourseList();
 		list = new JList<String>(courseList);
 		list.setBorder(BorderFactory.createTitledBorder("Schedule of the teacher"));
 		list.setSize(14*UNIT,28*UNIT);

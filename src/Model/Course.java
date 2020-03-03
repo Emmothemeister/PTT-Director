@@ -26,12 +26,18 @@ public class Course {
 		schedule = new ArrayList<Date>();
 	}
 	
+	
 	public void setDirector(CourseD d) {
 		director = d;
 	}
 	
 	public ArrayList<Date> getSchedule(){
 		return schedule;
+	}
+	
+	public void setSchedule(int d, int m, int y) {
+		schedule.add(new Date(d,m,y));
+		
 	}
 	
 	public String getCourseName() {
