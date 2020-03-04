@@ -39,6 +39,15 @@ public class Request {
 		return approved;
 	}
 	
+	public void setStatus(boolean bl) {
+		if(bl==true) approved = true;
+		if(bl==false) approved = false;
+	}
+	
+	public Time getSubmitTime(){
+		return submitTime;
+	}
+	
 	public String toString() {
 		return "Request ID: " + requestID + " Cost: " + cost + " Approved: " + approved;
 	}

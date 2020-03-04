@@ -16,8 +16,30 @@ public class PTTD extends Staff{
 		authority = 5;
 		requestBox = new ArrayList<Request>();
 		
-		
-		
+	}
+	
+	public void setRequestBox() {
+		for(int i=0; i<school.getApplyingRequests().size();i++) {
+			requestBox.add(school.getApplyingRequests().get(i));
+		}
+	}
+	
+	public ArrayList<Request> getRequestBoxList(){
+		return requestBox;
+	}
+	
+	public String[][] getRequestBoxStringArray() {
+		ArrayList<Request>t = requestBox;
+		String appRequestStringArray[][] = new String[requestBox.size()][6];
+		for(int i=0; i<requestBox.size();i++) {
+			appRequestStringArray[i][0] = ""+t.get(i).getID();
+			appRequestStringArray[i][1] = t.get(i).getContt();
+			appRequestStringArray[i][2] = ""+t.get(i).getCost();
+			appRequestStringArray[i][3] = t.get(i).getSubmitTime().toString();
+			appRequestStringArray[i][4] = t.get(i).getComm();
+			appRequestStringArray[i][5] = ""+t.get(i).getStatus();
+		}
+		return appRequestStringArray;
 	}
 	
 	

@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 import Control.PTTDCon_Main;
 import Control.PTTDCon_Req;
@@ -25,6 +26,9 @@ public class PTTDUI_Req extends JFrame {
 	private JLabel welcome, timeLabel;
 	private JPanel Budget, Clock, SouthPanel, ButtonPanel, p1, p2, p3, p4, p5, p6;
 	public JButton approval, back;
+	public JTable BT;
+	public ListSelectionModel selection;
+	public DefaultTableModel tableModel;
 	
 	public PTTDUI_Req(PTTD pm, Request r, PTTDCon_Req cr, PTTDCon_Main cm) {
 		pModel = pm;
@@ -59,11 +63,25 @@ public class PTTDUI_Req extends JFrame {
 		
 		
 		//Teaching Request
-		String[] columnTitle = {"ID", "Content", "Cost", "submitTime", "comment"};
-		Object[][] rowData = {
-				{"1", "Need a bunch of chalk", "100", "03/03/2020", "must"},
-		};
-		JTable BT = new JTable(rowData,columnTitle);
+		BT = new JTable();
+		tableModel = (DefaultTableModel) BT.getModel();
+		selection = BT.getSelectionModel();
+		selection.addListSelectionListener(controller);
+		tableModel.addColumn("ID");
+		tableModel.addColumn("Content");
+		tableModel.addColumn("Cost");
+		tableModel.addColumn("SubmitTime");
+		tableModel.addColumn("Comment");
+		tableModel.addColumn("Approved");
+		pModel.setRequestBox();
+		String[][] tableData = pModel.getRequestBoxStringArray();
+		for(int i=0; i < pModel.getRequestBoxList().size();i++) {
+			Object[] row = new Object[6];
+			for(int n=0; n<row.length;n++) {
+				row[n] = tableData[i][n];
+			}
+			tableModel.addRow(row);
+		}
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(BT);
 		Budget.add(scrollPane, BorderLayout.CENTER);
@@ -91,5 +109,11 @@ public class PTTDUI_Req extends JFrame {
 				}
 			});
 			tmr.start();	
+		}
+		
+		public void refreshTable() {
+			for(int m=0; m<pModel.getRequestBoxList().size();m++) {
+				BT.setValueAt(pModel.getRequestBoxList().get(m).getStatus(), m, 5);
+			}
 		}
 }

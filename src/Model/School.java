@@ -152,5 +152,8 @@ public class School {
 		return skillList;
 	}
 	
+	public void addApplyingRequest(Request r) {
+		applyingRequests.add(r);
+	}
 	
 }
